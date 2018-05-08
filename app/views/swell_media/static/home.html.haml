@@ -9,14 +9,15 @@
 					%img.logo-dark{:alt => SwellMedia.app_name, :src => image_path("logo-dark.png")}/
 			/ End Logo
 			/ Rightside Menu (Search, Cart, Bart icon)
-			-# .side-menu-btn
-				%ul
-					/ Sidebar Menu Icon
-					%li
-						%a#menu-sidebar-list-icon.nav-bar-icon
-							%span
-					/ End Sidebar Menu Icon
-			/ End Rightside Menu
+			- if current_user.present?
+				.side-menu-btn
+					%ul
+						/ Sidebar Menu Icon
+						%li
+							%a#menu-sidebar-list-icon.nav-bar-icon
+								%span
+						/ End Sidebar Menu Icon
+				/ End Rightside Menu
 			/ Navbar Navigation
 			.nav-menu.singlepage-nav{:style => "max-height: 308px;"}
 				%ul.nav-menu-inner

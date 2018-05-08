@@ -9,57 +9,58 @@
 				%img.logo-dark{:alt => "#{SwellMedia.app_name}", :src => image_path("logo-dark.png")}/
 		/ End Logo
 		/ Rightside Menu (Search, Cart, Bart icon)
-		.side-menu-btn
-			%ul
-				/ Search Icon
-				-# %li
-					%a.search-overlay-menu-btn.header-icon
-						%i.fa.fa-search
-				/ End Search Icon
-				/ Cart Icon
-				-# %li.cart
-					%a.header-icon{:href => "shop-checkout.html"}
-						%i.fa.fa-shopping-cart
-						.cart-notification-wrap
-							%span.cart-notification 2
-					/ Cart Dropdown
-					.cart-dropdown
-						%ul.cart-list
-							%li.light-color
-								%a.close-cart-list
-									%i.fa.fa-times-circle
-								.media
-									%a.pull-left
-										%img{:alt => "fashion", :src => image_path("app_theme/theme/general/img/product/02.jpg")}/
-									.media-body
-										%h6
-											%a Fashion Model New /01
-										%p $399.00
-							%li.light-color
-								%a.close-cart-list
-									%i.fa.fa-times-circle
-								.media
-									%a.pull-left
-										%img{:alt => "fashion", :src => image_path("app_theme/theme/general/img/product/06.jpg")}/
-									.media-body
-										%h6
-											%a Fashion Model New /02
-										%p $399.00
-						%p.cart-sub-totle
-							%span.pull-left Cart Subtotal
-							%span.pull-right.totle
-								%strong $798.00
-						.clearfix
-						.cart-checkout-btn
-							%a.btn.btn-md.btn-color-b.form-full.checkout{:href => "shop-checkout.html"} Checkout
-					/ End Cart Dropdown
-				/ End Cart Icon
-				/ Sidebar Menu Icon
-				%li
-					%a#menu-sidebar-list-icon.nav-bar-icon
-						%span
-				/ End Sidebar Menu Icon
-		/ End Rightside Menu
+		- if current_user.present?
+			.side-menu-btn
+				%ul
+					/ Search Icon
+					-# %li
+						%a.search-overlay-menu-btn.header-icon
+							%i.fa.fa-search
+					/ End Search Icon
+					/ Cart Icon
+					-# %li.cart
+						%a.header-icon{:href => "shop-checkout.html"}
+							%i.fa.fa-shopping-cart
+							.cart-notification-wrap
+								%span.cart-notification 2
+						/ Cart Dropdown
+						.cart-dropdown
+							%ul.cart-list
+								%li.light-color
+									%a.close-cart-list
+										%i.fa.fa-times-circle
+									.media
+										%a.pull-left
+											%img{:alt => "fashion", :src => image_path("app_theme/theme/general/img/product/02.jpg")}/
+										.media-body
+											%h6
+												%a Fashion Model New /01
+											%p $399.00
+								%li.light-color
+									%a.close-cart-list
+										%i.fa.fa-times-circle
+									.media
+										%a.pull-left
+											%img{:alt => "fashion", :src => image_path("app_theme/theme/general/img/product/06.jpg")}/
+										.media-body
+											%h6
+												%a Fashion Model New /02
+											%p $399.00
+							%p.cart-sub-totle
+								%span.pull-left Cart Subtotal
+								%span.pull-right.totle
+									%strong $798.00
+							.clearfix
+							.cart-checkout-btn
+								%a.btn.btn-md.btn-color-b.form-full.checkout{:href => "shop-checkout.html"} Checkout
+						/ End Cart Dropdown
+					/ End Cart Icon
+					/ Sidebar Menu Icon
+					%li
+						%a#menu-sidebar-list-icon.nav-bar-icon
+							%span
+					/ End Sidebar Menu Icon
+			/ End Rightside Menu
 		/ Mobile Navbar Icon
 		-# .nav-mobile.nav-bar-icon
 			%span
