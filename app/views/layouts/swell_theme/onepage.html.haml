@@ -1,0 +1,21 @@
+!!!
+%html
+	%head
+		= render 'application/analytics_head'
+		= render 'application/html_head', args: {}
+		= stylesheet_link_tag "app_theme_onepage_text_slider", media: "all"
+		= render 'application/header_scripts', args: {}
+		= render 'application/header_styles', args: {}
+	%body
+		= render 'application/analytics'
+		= hidden_field_tag :map_marker, image_path("app_theme/theme/onepage/img/map-marker.png")
+		%section#preloader
+			.site-spinner
+		#page-wraper
+			.wrapper
+				= yield
+				= render 'application/swell_theme/onepage_footer'
+
+
+		%script{:src => "https://maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+		= javascript_include_tag "app_theme_onepage_text_slider"

@@ -1,0 +1,6 @@
+
+%span.inline-icons.inline-icons-white
+	- { :twitter => 'Twitter', :pinterest => 'Pinterest', :facebook => 'Facebook', :reddit => 'Reddit', :instagram => 'Instagram', :google_plus => 'Google Plus', :flipboard => 'Flipboard', :youtube => 'Youtube', :github => 'Github' }.select{ |social_key,social_title| has_social_link?( social_key )  }.each do |social_key, social_title|
+		- if has_social_link? social_key
+			= social_link_tag social_key do
+				= social_action_icon_tag social_key

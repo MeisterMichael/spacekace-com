@@ -1,0 +1,18 @@
+- cache( "social-tag-count-#{social_link_count()}", expires_in: 6.hour ) do
+	%section#social.gray-bg.ptb.ptb-sm-80
+		.container.text-center
+			.row
+				.col-md-8.offset-md-2
+					%h3 Get Connect With Us
+			.spacer-60
+			.row
+				.col-md-8.offset-md-2
+					.row
+						- social_options = { :twitter => 'Twitter', :pinterest => 'Pinterest', :facebook => 'Facebook', :reddit => 'Reddit', :google_plus => 'Google Plus', :flipboard => 'Flipboard', :instagram => 'Instagram' }.select{ |social_key,social_title| has_social_link?( social_key )  }
+						- social_options.keys[0..3].each do |social_key|
+							.col-md-3.col-sm-4.col-6
+								= social_link_tag social_key do
+									.page-icon-top
+										= social_action_icon_tag social_key
+									%h6
+										= social_options[social_key]

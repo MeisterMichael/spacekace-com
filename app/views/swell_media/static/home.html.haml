@@ -1,0 +1,141 @@
+
+- cache( "head/#{current_user.try(:id)}", expires_in: 6.hour ) do
+	%header#header.header
+		.container
+			/ Logo
+			.logo
+				%a{:href => swell_media.root_path()}
+					%img.logo-light{:alt => SwellMedia.app_name, :src => image_path("logo-light.png")}/
+					%img.logo-dark{:alt => SwellMedia.app_name, :src => image_path("logo-dark.png")}/
+			/ End Logo
+			/ Rightside Menu (Search, Cart, Bart icon)
+			-# .side-menu-btn
+				%ul
+					/ Sidebar Menu Icon
+					%li
+						%a#menu-sidebar-list-icon.nav-bar-icon
+							%span
+					/ End Sidebar Menu Icon
+			/ End Rightside Menu
+			/ Navbar Navigation
+			.nav-menu.singlepage-nav{:style => "max-height: 308px;"}
+				%ul.nav-menu-inner
+					%li
+						%a{:href => "#intro"} Home
+					-# %li
+						%a{:href => "#about"} About
+					-# %li
+						%a{:href => "#move_learn_play"} Move / Learn / Express
+					-# if @adventure_logs.count >= 3
+						%li
+							%a{:href => "#adventure_log"} Adventure Log
+					- if @articles.count >= 3
+						%li
+							%a{:href => "#blog"} The Library
+					%li.hidden-md-down
+						%a{:href => "#contact-us"} Get In Touch
+					%li.hidden-md-up
+						%a{:href => "#contact-us"} Contact
+					- if current_user.present?
+						%li
+							%a
+								%i.fa.fa-user
+								#{current_user.name}
+			/ End Navbar Navigation
+
+= render 'application/flash', args: {}
+- cache( 'body', expires_in: 6.hour ) do
+	/ Intro
+	%section#intro.intro
+		/ Static Intro
+		.bg-image.overlay-dark.dark-bg.bg-fixed{"data-background-img" => image_path("https://content-static.upwork.com/blog/uploads/sites/3/2016/12/10134546/hire-how-to-mobile-app-developer-h-940x400.jpg")}
+			.js-fullscreen-height.container
+				.intro-content
+					.intro-content-inner
+						%h2.h2
+							%span{ style: 'color: #F4A416' }><Spacekace
+							Labs
+
+						.row
+							.col-md-6.offset-md-3
+								%p.lead
+									Delivering FULL STACK WEB and MOBILE solutions.
+								-# %h4
+									%span.badge.badge-primary Ruby
+									%span.badge.badge-primary Android
+									%span.badge.badge-primary{ style: 'text-transform: none' } iOS
+		/ End Static Intro
+	/ End Intro
+	.clearfix
+	/ About Section
+	/ End About Section
+	/ About Section 2
+	-# %section#move_learn_play.wow.fadeIn.ptb.ptb-sm-80.animated.text-center.gray-bg
+		.container
+			.row
+				.col-md-4.col-sm-6.content-box.mb-sm-30.wow.fadeIn{"data-wow-delay" => "0.2s", "data-wow-duration" => "2s"}
+					.page-icon-top.icon-black
+						%i.fa.fa-heartbeat
+					%h5.features-title Plugins
+					%p Something
+				.col-md-4.col-sm-6.content-box.mb-sm-30.wow.fadeIn{"data-wow-delay" => "0.4s", "data-wow-duration" => "2s"}
+					.page-icon-top.icon-black
+						%i.fa.fa-pencil
+					%h5.features-title Projects
+					%p Something else
+				.col-md-4.col-sm-6.content-box.mb-sm-30.wow.fadeIn{"data-wow-delay" => "0.6s", "data-wow-duration" => "2s"}
+					.page-icon-top.icon-black
+						%i.fa.fa-smile-o
+						%i.fa.fa-frown-o
+					%h5.features-title Consulting
+					%p Something more
+	/ End About Section 2
+
+	- if @articles.count >= 3
+		%section#blog.wow.fadeIn.ptb.ptb-sm-80.animated
+			.container
+				%h3.float-left.float-none-xs Latest Posts
+				%a.btn-link-a.float-right.float-none-xs{ href: swell_media.articles_path() } View All
+				.clearfix
+				.spacer-60
+				.row
+
+					- @articles.each_with_index do |article, index|
+						.col-lg-4.col-md-6.col-sm-6.mb-sm-30
+							- unless index == 0
+								%hr
+							= render 'swell_media/articles/blog_post', media: article, args: { mode: :thumb }
+
+
+	/ Contact Form
+	%section#contact-us.wow.fadeIn.ptb.ptb-sm-80.animated.dark-bg.bg-image.overlay-dark60{"data-background-img" => image_path("app_theme/theme/onepage/img/full/20.jpg"), "data-stellar-background-ratio" => "0.5"}
+		.container
+			.row.text-center
+				.col-12
+					%h6.page-title-alt.color.mb-15 Wanna say hello?
+					%h2.page-title
+						Get In
+						%span.text-light Touch
+			.row
+				.col-md-8.offset-md-2
+					= form_for SwellMedia::Contact.new, as: :contact_us, html: { id: 'contact-form', class: 'row contact-form' } do |f|
+						.col-md-12.text-center
+							%h5.successContent
+								%i.fa.fa-check.left{:style => "color: #5cb45d;"}>
+								Your message has been sent successfully.
+							%h5.errorContent{:style => "color: #e1534f;"}
+								%i.fa.fa-exclamation-circle.left>
+								There was a problem validating the form please check!
+						.col-md-6
+							.form-field-wrapper
+								%input#form-name.input-md.form-full{:name => "form-name", :placeholder => "Your Name", :required => "", :type => "text"}/
+							.form-field-wrapper
+								= f.email_field :email, id: 'form-email', :placeholder => "Email", required: true, class: 'input-md form-full'
+							.form-field-wrapper
+								= f.text_field :subject, id: 'form-subject', :placeholder => "Subject", class: 'input-md form-full'
+						.col-md-6.mb-0
+							.form-field-wrapper
+								= f.text_area :message, id: 'form-message', :placeholder => "Your Message", :required => true, rows: 7, class: 'input-md form-full'
+						.col-md-12.text-center
+							%button#form-submit.btn-contact-submit.btn.btn-md.btn-color{:name => "submit", :type => "submit"} Submit
+	/ End Contact Form

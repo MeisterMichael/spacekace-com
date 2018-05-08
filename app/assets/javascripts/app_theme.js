@@ -1,0 +1,1 @@
+/* Remove if installing theme gem */

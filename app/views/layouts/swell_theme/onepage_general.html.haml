@@ -1,0 +1,24 @@
+!!!
+%html
+	%head
+		= render 'application/analytics_head'
+		= render 'application/html_head', args: {}
+		= stylesheet_link_tag "app_theme_multipage", media: "all"
+		= render 'application/header_scripts', args: {}
+		= render 'application/header_styles', args: {}
+
+
+	%body
+		= render 'application/analytics'
+		= hidden_field_tag :map_marker, image_path("app_theme/theme/onepage/img/map-marker.png")
+		= render 'application/swell_theme/preloader'
+		= render 'application/swell_theme/multipage_searchoverlaymenu'
+		= render 'application/swell_theme/multipage_sidemenu'
+		.wrapper
+			= yield
+			= render 'application/swell_theme/onepage_footer'
+
+
+		%script{:src => "https://maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+		= javascript_include_tag "app_theme_multipage"
+		= render 'application/footer_scripts', args: {}

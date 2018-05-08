@@ -1,0 +1,46 @@
+/ Sidemenu
+%section#pushmenu-right.pushmenu.pushmenu-right.side-menu
+	%a#menu-sidebar-close-icon.menu-close
+		%i.ion.ion-android-close
+	- if current_user.present?
+		%h5.white Hi #{current_user.name}
+	- else
+		%h5.white Sign In
+		.sign-in
+			= form_for User.new, as: 'user', url: main_app.user_session_path(), role: :form do |f|
+				= f.text_field :login, id: 'email', autofocus: true, placeholder: "Email", class: 'input-sm form-full', required: true, "aria-required" => "true"
+				= f.password_field :password, id: 'password', placeholder: "password", class: 'input-sm form-full', required: true, "aria-required" => "true"
+				-# = f.check_box :remember_me, checked: true
+
+				-# %a.btn.btn-primary.btn-facebook.col-xs-12.auth-pop{ href: main_app.user_facebook_omniauth_authorize_path( ga_client_id: ':ga_client_id' ) }
+					%i.fa.fa-facebook
+					Facebook
+				%input.btn.btn-md.btn-color-b.form-full{:type => "submit", :value => "Sign In"}/
+			%a{ href: main_app.new_user_registration_path() } New Member?
+			%a.pull-right{ href: "/forgot" } Forgot Password?
+	%ul
+		%li
+			%a{:href => swell_media.root_path() } Home
+		%li
+			%a{:href => swell_media.articles_path()} Plugins
+		-# %li
+			%a{:href => '/privacy'} Privacy
+		-# %li
+			%a{:href => '/terms'} Terms
+		- if current_user.present?
+			%li.pt-15
+				%a{:href => main_app.logout_path() } Log out
+		%li.pt-15
+			GET CONNECT WITH US
+			%div
+				= render 'social/icons'
+		%li
+			%small
+				© #{Time.current.year}
+				= succeed "." do
+					%b #{SwellMedia.app_name.upcase}
+				%div
+					LOVINGLY CRAFTED BY
+					%a{:href => "http://www.groundswellenterprises.com/", :target => "_blank"}
+						%b GROUNDSWELL ENTERPRISES
+/ End Sidemenu
