@@ -1,6 +1,6 @@
 class User < SwellMedia::User
 
-	devise 		:database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :authentication_keys => [:login]
+	devise 		:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :authentication_keys => [:login]
 
 
 	### Class Methods   	--------------------------------------

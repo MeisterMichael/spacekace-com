@@ -55,9 +55,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-gem 'fog-ovirt', '1.0.1'
-# gem 'jquery-rails', '4.2.1'
-# gem 'jquery-ui-rails', '6.0.1'
+gem 'newrelic_rpm'
 gem 'sitemap_generator'
 
 
@@ -67,5 +65,5 @@ swell_engines_path = ENV['SWELL_ENGINE_PATH'] || '../engines'
 # gem 'swell_theme_mazel', path: "#{swell_engines_path}/swell_theme_mazel"
 
 # prod
-gem 'swell_media', git: 'git://github.com/Groundswell/swell_media.git', :tag => "v2.5.1"
+gem 'swell_media', git: 'git://github.com/Groundswell/swell_media.git', branch: 'dev'#, :tag => "v2.6.0"
 gem 'swell_theme_mazel', git: 'git://github.com/MeisterMichael/swell_theme_mazel.git'

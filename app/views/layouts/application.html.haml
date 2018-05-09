@@ -1,6 +1,7 @@
 !!!
 %html
 	%head
+		= render 'application/gtm_head'
 		= render 'application/html_head', args: {}
 		= stylesheet_link_tag "app_theme_multipage", media: "all"
 		= render 'application/header_scripts', args: {}
@@ -8,6 +9,7 @@
 
 
 	%body
+		= render 'application/gtm_body'
 		= hidden_field_tag :map_marker, image_path("app_theme/theme/onepage/img/map-marker.png")
 		= render 'application/swell_theme/preloader'
 		= render 'application/swell_theme/multipage_searchoverlaymenu'
